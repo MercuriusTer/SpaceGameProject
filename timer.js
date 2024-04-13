@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Initialize variables
     var startTime;
     var endTime;
-    var gameDuration = 20; // Duration of the game in seconds
+    var gameDuration = 60; // Duration of the game in seconds
     var timerDisplay = document.getElementById('timer');
 
     // Start the game
