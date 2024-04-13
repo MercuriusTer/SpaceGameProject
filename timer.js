@@ -65,6 +65,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var closeButton = document.getElementById('main-menu-button');
     closeButton.addEventListener('click', function() {
-        window.location.href = './menu.html';
+        window.location.href = './home.html';
     });
 }});
