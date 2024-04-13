@@ -63,4 +63,5 @@ document.addEventListener("DOMContentLoaded", function() {
         // Update the content of the game-score div
         gameScoreDiv.innerHTML = 'Score: ' + sum + '<br> Results: ' + results.join(', ');
     }
+    
 });

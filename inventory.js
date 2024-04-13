@@ -2,16 +2,60 @@ document.addEventListener("DOMContentLoaded", function() {
     // Get the inventory items
     var inventoryItems = document.querySelectorAll('.inv');
     var clearButton = document.getElementById('clear-button');
+    var number1 = document.getElementById('number1');
+    var number2 = document.getElementById('number2');
+
+    // Array to store the numbers
+    var numbers = [];
 
     // Add click event listener to the clear button
     clearButton.addEventListener('click', function() {
-        // Get all inventory items
-        var inventoryItems = document.querySelectorAll('.inv');
-
         // Clear the text content of each inventory item
         inventoryItems.forEach(function(item) {
             item.textContent = '';
         });
+
+        // Clear the numbers array
+        numbers = [];
+    });
+
+    // Function to return number to inventory
+    function returnToInventory(number) {
+        // Check if there is space in any inventory div
+        for (var i = 0; i < inventoryItems.length; i++) {
+            if (inventoryItems[i].textContent === '') {
+                // Place the number in the empty inventory div
+                inventoryItems[i].textContent = number;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Add click event listener to number1 div
+    number1.addEventListener('click', function() {
+        // Get the number from the number1 div
+        var number = parseInt(number1.textContent);
+        if (!isNaN(number)) {
+            // Return the number to inventory
+            if (returnToInventory(number)) {
+                // Clear the number1 div
+                number1.textContent = '';
+            }
+        }
+    });
+
+    // Add click event listener to number2 div
+    number2.addEventListener('click', function() {
+        // Get the number from the number2 div
+        var number = parseInt(number2.textContent);
+        if (!isNaN(number)) {
+            // Return the number to inventory
+            if (returnToInventory(number)) {
+                // Clear the number2 div
+                number2.textContent = '';
+            }
+        }
     });
 
     // Add click event listener to each inventory item
@@ -22,10 +66,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Check if the number is not NaN (not a number)
             if (!isNaN(number)) {
-                // Check if there is space in the calculator numbers
-                var number1 = document.getElementById('number1');
-                var number2 = document.getElementById('number2');
+                // Add the number to the array
+                numbers.push(number);
 
+                // Check if there is space in the calculator numbers
                 if (number1.textContent === '') {
                     // Place the number in the first calculator number
                     number1.textContent = number;

@@ -7,6 +7,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to respawn a single enemy at a random position on the top edge of the game board
     function respawnEnemy() {
+        // Check if the game over modal is visible
+        var modalOverlay = document.getElementById('modal-overlay');
+        if (modalOverlay.style.display === 'flex') {
+        // If the game over modal is visible, stop respawning enemies
+            return;
+        }
+
         // Create a new enemy element
         var newEnemy = document.createElement('div');
         newEnemy.className = 'enemy';
@@ -29,47 +36,47 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Start updating the position and behavior of the new enemy
         updatePosition(0, newEnemy);
-    }
-
-    // Function to update the position and behavior of an enemy
-    function updatePosition(currentPosition, enemy) {
-        // Set speed of falling
-        var speed = 3; // Adjust as needed
-
-        // Set initial horizontal position
-        var horizontalPosition = Math.random() * Math.PI * 1; // Random initial horizontal position
-
-        // Apply vertical movement
-        currentPosition += speed; // Update vertical position
-        enemy.style.top = currentPosition + 'px';
-
-        // Apply horizontal sway with damping effect
-        var swayAmplitude = Math.random() * 5 + 5; // Random amplitude between 5 and 10
-        var swayFrequency = Math.random() * 0.05 + 0.05; // Random frequency between 0.05 and 0.1
-
-        // Damping factor to reduce the amplitude of the swing
-        var dampingFactor = 0.95;
-
-        // Calculate the new sway offset
-        horizontalPosition += swayFrequency;
-        var swayOffset = Math.sin(horizontalPosition) * swayAmplitude;
-
-        // Update enemy position
-        enemy.style.left = 'calc(10% + ' + Math.random() * + 'px)';
-
-        // Get the height of the game board
-        var gameBoardHeight = gameBoard.clientHeight;
-
-        // Check if enemy has reached or exceeded the bottom of game board
-        if (currentPosition >= gameBoardHeight - enemy.clientHeight) {
-            // Remove the enemy from the game board
-            gameBoard.removeChild(enemy);
-        } else {
-            // Continue updating position
-            requestAnimationFrame(function() {
-                updatePosition(currentPosition, enemy);
-            });
         }
+
+            // Function to update the position and behavior of an enemy
+        function updatePosition(currentPosition, enemy) {
+            // Set speed of falling
+            var speed = 3; // Adjust as needed
+
+            // Set initial horizontal position
+            var horizontalPosition = Math.random() * Math.PI * 1; // Random initial horizontal position
+
+            // Apply vertical movement
+            currentPosition += speed; // Update vertical position
+            enemy.style.top = currentPosition + 'px';
+
+            // Apply horizontal sway with damping effect
+            var swayAmplitude = Math.random() * 5 + 5; // Random amplitude between 5 and 10
+            var swayFrequency = Math.random() * 0.05 + 0.05; // Random frequency between 0.05 and 0.1
+
+            // Damping factor to reduce the amplitude of the swing
+            var dampingFactor = 0.95;
+
+            // Calculate the new sway offset
+            horizontalPosition += swayFrequency;
+            var swayOffset = Math.sin(horizontalPosition) * swayAmplitude;
+
+            // Update enemy position
+            enemy.style.left = 'calc(10% + ' + Math.random() * + 'px)';
+
+            // Get the height of the game board
+            var gameBoardHeight = gameBoard.clientHeight;
+
+            // Check if enemy has reached or exceeded the bottom of game board
+            if (currentPosition >= gameBoardHeight - enemy.clientHeight) {
+                // Remove the enemy from the game board
+                gameBoard.removeChild(enemy);
+            } else {
+                // Continue updating position
+                requestAnimationFrame(function() {
+                    updatePosition(currentPosition, enemy);
+                });
+            }
     }
 
     // Function to collect the number from the enemy
