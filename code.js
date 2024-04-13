@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
             calcuDiv.textContent = symbol;
 
             // Set the cooldown duration (in milliseconds)
-            var cooldownDuration = 3000; // 3 seconds
+            var cooldownDuration = 7000; // 3 seconds
 
             // Disable the clicked operator and show cooldown timer
             disableOperator(operator, cooldownDuration, symbol);

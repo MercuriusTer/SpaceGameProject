@@ -18,13 +18,13 @@ document.addEventListener("DOMContentLoaded", function() {
         var newEnemy = document.createElement('div');
         newEnemy.className = 'enemy';
         newEnemy.style.display = 'block';
-        newEnemy.textContent = Math.floor(Math.random() * 10) + 1; // Random number between 1 and 100
+        newEnemy.textContent = Math.floor(Math.random() * 9) + 1; // Random number between 1 and 100
 
         // Calculate a random horizontal position within the width of the game board
         var gameBoardWidth = gameBoard.clientWidth;
         var enemyWidth = newEnemy.clientWidth;
         var randomLeft = Math.random() * (gameBoardWidth - enemyWidth); // Adjusted for enemy width
-        newEnemy.style.left = randomLeft + 'px';
+        newEnemy.style.left = (randomLeft+20) + 'px';
 
         // Append the new enemy to the game board
         gameBoard.appendChild(newEnemy);
@@ -96,7 +96,32 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
-        // If all inventory divs are full, do nothing
+        if (inventoryItems[0].textContent !== '' && inventoryItems[1].textContent !== '') {
+            // Shift number from number1 to inventory
+            var shiftedNumber1 = parseInt(inventoryItems[1].textContent);
+            returnToInventory(shiftedNumber1);
+            // Move number from number2 to number1
+            inventoryItems[1].textContent = inventoryItems[0].textContent;
+            // Clear number2
+            inventoryItems[0].textContent = number;
+            // Remove the enemy from the game board
+            gameBoard.removeChild(enemy);
+            // Exit the loop
+            return;
+        }
+    }
+
+    // Function to return number to inventory
+    function returnToInventory(number) {
+        // Check if there is space in any inventory div
+        for (var i = 0; i < inventoryItems.length; i++) {
+            if (inventoryItems[i].textContent === '') {
+                // Place the number in the empty inventory div
+                inventoryItems[i].textContent = number;
+                return true;
+            }
+        }
+        return false;
     }
 
     // Spawn a new enemy every second

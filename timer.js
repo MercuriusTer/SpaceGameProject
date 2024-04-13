@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var finalScore = document.getElementById('game-score').textContent;
     var resultshow = document.getElementById('score-results');
 
-    resultshow.innerHTML = 'Game Over!\nYour final score: ' + finalScore;
+    resultshow.innerHTML = 'Game Over! <br> Your final score: ' + finalScore;
 
     // Create retry and close buttons
     var retryButton = document.getElementById('retry-button');

@@ -1,23 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Get the inventory items
     var inventoryItems = document.querySelectorAll('.inv');
-    var clearButton = document.getElementById('clear-button');
     var number1 = document.getElementById('number1');
     var number2 = document.getElementById('number2');
 
     // Array to store the numbers
     var numbers = [];
-
-    // Add click event listener to the clear button
-    clearButton.addEventListener('click', function() {
-        // Clear the text content of each inventory item
-        inventoryItems.forEach(function(item) {
-            item.textContent = '';
-        });
-
-        // Clear the numbers array
-        numbers = [];
-    });
 
     // Function to return number to inventory
     function returnToInventory(number) {
