@@ -45,7 +45,7 @@ body {
     /* border: 2px solid #fff; */
     /* background-image: url('space_background.jpg'); */
     background-size: cover;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-top: 1px;
     display: flex;
     align-items: center;
@@ -64,10 +64,10 @@ body {
 margin-left: 10px; /* Adjust this margin as needed */
 }
 .inv {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     background-image: url('https://cdn.discordapp.com/attachments/1228366298640285696/1229439001421938779/aukkabad.png?ex=662faf4b&is=661d3a4b&hm=a1e42ac8b264e3cf1c119a0907aacc706ba99c880e5c01edffc6dfdd92abc36b&');
-    background-size: 70px 70px;
+    background-size: 60px 60px;
     background-repeat: no-repeat;
     /* border: #9626f7 2px solid;   */
     border-radius: 50%;
@@ -89,7 +89,7 @@ margin-left: 10px; /* Adjust this margin as needed */
 }
 
 #calculator {
-    width: calc(70% - 2px);
+    width: calc(60% - 2px);
     height: 100px;
     /* border: 2px solid #fff; */
     /* background-color: #333; */
@@ -98,11 +98,11 @@ margin-left: 10px; /* Adjust this margin as needed */
     align-items: center;
 }
 .calcu {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     background-image: url('https://media.discordapp.net/attachments/1228366298640285696/1229455528665546762/Pngtreeeddy_explosion_blast_boom_vector_6442118.png?ex=662fbeb0&is=661d49b0&hm=89955a80e1ce7606bf9c9bbb81454a6d33ca17ff53831f6f742612ae53bbb5ce&=&format=webp&quality=lossless&width=651&height=651');
     /* border: #f84343 2px solid; */
-    background-size:75px 75px;
+    background-size:70px 70px;
     background-repeat: no-repeat;
     border-radius: 50%;
     display: flex;
@@ -111,7 +111,7 @@ margin-left: 10px; /* Adjust this margin as needed */
     color: black;
     font-weight: bold;
     position: relative;
-    margin:  10px;
+    /* margin:  5px; */
     text-align: center;
 }
 #opera {

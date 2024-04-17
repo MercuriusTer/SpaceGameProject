@@ -2,16 +2,8 @@
 
 body {
     font-family: "Itim", sans-serif;
-    /* background-image: url('https://wallpapercosmos.com/w/full/8/7/7/194290-3840x2160-desktop-4k-outer-space-wallpaper-photo.jpg');
-    background-size: 100%; */
-    /* background-image: url('https://oyster.ignimgs.com/mediawiki/apis.ign.com/league-of-legends/a/a6/Gragas_lol.jpg?width=640'); */
-     background: linear-gradient( 45deg, #1F2544 , #474F7A , #81689D , #FFD0EC); 
-    background-size: cover;
-    width: auto;
-    height: 95.95vh;
-    background-repeat: no-repeat;
-    /* marin: auto;
-    padding: auto; */
+    background : linear-gradient( 45deg, #1F2544 , #474F7A , #81689D , #FFD0EC);
+    background-attachment: fixed;
 }
 .container {
     width: 80%;
