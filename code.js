@@ -1,34 +1,35 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Get all operator div elements
+    // ตัวแปรเครื่องหมาย + - x /
     var operators = document.querySelectorAll('.operator');
 
-    // Add click event listeners to each operator
+    // เพิ่ม function ให้เครื่องหมายแต่ละปุ่ม
     operators.forEach(function(operator) {
         operator.addEventListener('click', function() {
-            // Get the clicked operator symbol
+            // รับสัญลักษณ์ตัวดำเนินการเมื่อคลิ๊ก
             var symbol = this.textContent;
 
-            // Update the calcu div with the clicked operator symbol
+            // อัพเดทตัวดำเนินการใหม่เมื่อคลิ๊ก(แทนที่ตัวดำเนินการเดิม)
             var calcuDiv = document.getElementById('opera');
             calcuDiv.textContent = symbol;
 
-            // Set the cooldown duration (in milliseconds)
+            // ตั้งระยะเวลา cooldown เครื่องหมาย
             var cooldownDuration = 7000; // 3 seconds
 
-            // Disable the clicked operator and show cooldown timer
+            // เรียกใช้ function ปิดการใช้งาน (cooldown) เครื่องหมาย
             disableOperator(operator, cooldownDuration, symbol);
         });
     });
 
-    // Function to disable the operator for a certain duration and show the cooldown timer
-    function disableOperator(operator, cooldownDuration, symbol) {
-        // Get the current symbol before updating it
+    // ฟังก์ชันคลูดาวน์และแสดงการนับเวลาถอยหลัง
+        function disableOperator(operator, cooldownDuration, symbol) {
+        // รับสัญลักษณ์ปัจจุบันก่อนอัปเดต
         var currentSymbol = operator.textContent;
 
-        // Disable the operator by adding a 'disabled' class
+        // ปิดการใช้งานตัว operator โดยการเพิ่มคลาส disable ให้ operator
         operator.classList.add('disabled');
 
-        // Set a timeout to re-enable the operator after the cooldown duration
+        // ตั้งเวลาเวลา time out ให้สามารถใช้เครื่องหมายได้อีกรอบ
+        
         var startTime = Date.now();
         var endTime = startTime + cooldownDuration;
 
@@ -37,12 +38,12 @@ document.addEventListener("DOMContentLoaded", function() {
         var timerInterval = setInterval(function() {
             updateTimer(operator, endTime);
 
-            // Check if the cooldown duration has passed
+            // เช็คว่าหมดเวลาคลูดาวน์หรือยัง
             if (Date.now() >= endTime) {
-                // Re-enable the operator by removing the 'disabled' class
+                // เปิดใช้งานตัวสัญลักษณ์อีกครั้งโดยการลบคลาส 'disabled'
                 operator.classList.remove('disabled');
 
-                // If the operator text content has been changed during cooldown, revert it back
+                // ถ้าคูลดาวน์หมดแล้วให้กลับมาใช้สัญลักษณ์นั้นได้
                 if (operator.textContent !== symbol) {
                     operator.textContent = symbol;
                 }
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 1000);
     }
 
-    // Function to update the timer display next to the operator
+    // อัพเดทเวลาคลูดาวน์ของเครื่องหมายคำนวณที่หน้าจอ
     function updateTimer(operator, endTime) {
         var remainingTime = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
         operator.textContent = remainingTime + 's';

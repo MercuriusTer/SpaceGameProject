@@ -1,14 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Initialize an array to store results
+    // กำหนด Array ที่ไว้เก็บคะแนน
     var score = [];
-    var results = [];
 
-    // Get the submit button element
+    // ตัวแปร submit button
     var submitButton = document.getElementById('submit-button');
 
-    // Add click event listener to the submit button
+    // ปุ่มคลิ๊ก submit
     submitButton.addEventListener('click', function() {
-        // Get the numbers and operator from the calculator
+        //รับเลขและเครื่องหมายตอนคำนวน
         var number1 = document.getElementById('number1').textContent;
         var operator = document.getElementById('opera').textContent;
         var number2 = document.getElementById('number2').textContent;
@@ -18,12 +17,11 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        // Perform the calculation based on the operator
+        // เช็คเครื่องหมายคำนวน
         var result;
         switch (operator) {
             case '+':
                 result = parseFloat(number1) + parseFloat(number2);
-                // if(result ==  21)
                 break;
             case '-':
                 result = parseFloat(number1) - parseFloat(number2);
@@ -42,35 +40,50 @@ document.addEventListener("DOMContentLoaded", function() {
 
         clearCalculator()
 
-        // Store the result in the array
-        // เปลี่ยนตรงนี้ กำหนดเกณฑ์แทนตรงนี้ไปเลย
-        // results.push(result);
+        // เกณฑ์คำนวณ
+        var bonusSound = document.getElementById("bonusSound");
+        bonusSound.volume = 0.2;
+        var sumSound = document.getElementById("sumSound");
+        sumSound.volume = 0.2
         switch (result) {
-            case 21 || 27:
+            case 21:
                 score.push(6);
-                results.push(result)
+                bonusSound.play();
                 break;
-            case 22 || 26:
+            case 22:
                 score.push(7);
-                results.push(result)
+                bonusSound.play();
                 break;
-            case 23 || 25:
+            case 23 :
                 score.push(8);
-                results.push(result)
+                bonusSound.play();
                 break;
             case 24:
                 score.push(10);
-                results.push(result)
+                bonusSound.play();
+                break;
+            case 25:
+                score.push(8);
+                bonusSound.play();
+                break;
+            case 26:
+                score.push(7);
+                bonusSound.play();
+                break;
+            case 27:
+                score.push(6);
+                bonusSound.play();
                 break;
             default:
                 document.getElementById('number1').textContent = result;
+                sumSound.play();
                 break;
         }
-        // Update the content of the game-score div
+        // อัพเดทคะแนน
         updateGameScore();
     });
     
-    // Function to clear the calculator display
+    // เคลียร์พื้นที่คำนวน
     function clearCalculator() {
         document.getElementById('number1').textContent = '';
         document.getElementById('opera').textContent = '';
@@ -79,12 +92,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function updateGameScore() {
         var gameScoreDiv = document.getElementById('game-score');
-        
-        // Calculate the sum of all elements in the results array
+        // คำนวณคะแนนทั้งหมดที่อยู่ใน Array มารวมกัน
         var sum = score.reduce((total, currentValue) => total + currentValue, 0);
 
-        // Update the content of the game-score div
-        gameScoreDiv.innerHTML = 'Score: ' + sum + '<br> Results: ' + results.join(', ');
+        // อัพเดตคะแนนปัจจุบัน
+        gameScoreDiv.innerHTML = "Score : " + sum;
     }
-    
 });

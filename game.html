@@ -9,9 +9,9 @@
 <body>
 <div id="game-container">
     <div id="timer"></div>
-	<div id="game-score">Score: 0 <br> Results: 0</div>
+	<div id="game-score">Score: 0 <br>Result: 0</div>
     <div id="game-board">
-        <div class="operator" id="plus">+</div>
+    <div class="operator" id="plus">+</div>
 		<div class="operator" id="minus">-</div>
 		<div class="operator" id="multi">×</div>
 		<div class="operator" id="divide">÷</div>
@@ -37,11 +37,30 @@
           <button id="main-menu-button">Main Menu</button>
         </div>
       </div>
+      <div>
+        <img src="/img/cool star.png" alt="">
+      </div>
+      <audio id="ballSound">
+        <source src="sound/ball-tap.mp3" type="audio/mpeg">
+      </audio>
+      <audio id="bonusSound">
+        <source src="sound/bonus.mp3" type="audio/mpeg">
+      </audio>
+      <audio id="sumSound">
+        <source src="sound/alert.mp3" type="audio/mpeg">
+      </audio>
+      <audio autoplay loop id="bgSound">
+        <source src="sound/std.mp3" type="audio/mpeg">
+      </audio>
+      <audio autoplay id="startSound">
+        <source src="sound/startSound.mp3" type="audio/mpeg">
+    </audio>
 </div>
 <script src="code.js"></script>
 <script src="enemy.js"></script>
 <script src="inventory.js"></script>
 <script src="calcu.js"></script>
 <script src="timer.js"></script>
+<script src="sound.js"></script>
 </body>
 </html>

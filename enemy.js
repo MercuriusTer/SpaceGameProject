@@ -1,122 +1,111 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Get the game board element
+    
+    // ประกาศตัวแปรโดยรับค่าจาก game boar
     var gameBoard = document.getElementById('game-board');
 
-    // Get the inventory divs
+    //ประกาศตัวแปรโดยรับค่าจาก inv
     var inventoryItems = document.querySelectorAll('.inv');
 
-    // Function to respawn a single enemy at a random position on the top edge of the game board
+    // ฟังก์ชันในการ เกิดของอุกาบาตแบบสุ่ม ให้ตกลงมาจากข้างบนของหน้าจอ
     function respawnEnemy() {
-        // Check if the game over modal is visible
+        // เช็คว่าเกมโอเวอร์รึยัง
         var modalOverlay = document.getElementById('modal-overlay');
         if (modalOverlay.style.display === 'flex') {
-        // If the game over modal is visible, stop respawning enemies
+        // หากเกมหยุดแล้วให้หยุดสุ่มอุกาบาตที่ตกลงมา
             return;
         }
 
-        // Create a new enemy element
+        // การสร้างอุกาบาตลูกใหม่
         var newEnemy = document.createElement('div');
         newEnemy.className = 'enemy';
         newEnemy.style.display = 'block';
-        newEnemy.textContent = Math.floor(Math.random() * 9) + 1; // Random number between 1 and 100
+        newEnemy.textContent = Math.floor(Math.random() * 9) + 1; // Random number between 1 and 100 // สุ่มค่าในอุกาบาตจาก 1 ถึง 9 
 
-        // Calculate a random horizontal position within the width of the game board
+        // สุ่มแสดง ว่าออกจากซ้ายหรือขวา
         var gameBoardWidth = gameBoard.clientWidth;
         var enemyWidth = newEnemy.clientWidth;
         var randomLeft = Math.random() * (gameBoardWidth - enemyWidth); // Adjusted for enemy width
         newEnemy.style.left = (randomLeft+20) + 'px';
 
-        // Append the new enemy to the game board
+        // การเพิ่มอุกาบาต
         gameBoard.appendChild(newEnemy);
 
-        // Add click event listener to the new enemy
+        // เสียงตอนคลิกอุกาบาต เพื่อแสดงให้รู้ว่าเราเก็บค่ามาแล้วนะ
+        var ballSound = document.getElementById("ballSound");
+        ballSound.volume = 0.2;
         newEnemy.addEventListener('click', function() {
+            ballSound.play();
             collectNumber(this);
         });
 
-        // Start updating the position and behavior of the new enemy
+        // อัพเดทการสุ่มการตกของอุกาบาต 
         updatePosition(0, newEnemy);
         }
 
-            // Function to update the position and behavior of an enemy
+            //ฟังก์ชันการอัพเดทของบรรทัดที่ 50
         function updatePosition(currentPosition, enemy) {
-            // Set speed of falling
-            var speed = 3; // Adjust as needed
+            // ความเร็วในการตกของอุกาบาต
+            var speed = 2 ; // Adjust as needed
 
-            // Set initial horizontal position
-            var horizontalPosition = Math.random() * Math.PI * 1; // Random initial horizontal position
-
-            // Apply vertical movement
-            currentPosition += speed; // Update vertical position
+            currentPosition += speed;
             enemy.style.top = currentPosition + 'px';
 
-            // Apply horizontal sway with damping effect
-            var swayAmplitude = Math.random() * 5 + 5; // Random amplitude between 5 and 10
-            var swayFrequency = Math.random() * 0.05 + 0.05; // Random frequency between 0.05 and 0.1
-
-            // Damping factor to reduce the amplitude of the swing
-            var dampingFactor = 0.95;
-
-            // Calculate the new sway offset
-            horizontalPosition += swayFrequency;
-            var swayOffset = Math.sin(horizontalPosition) * swayAmplitude;
-
-            // Update enemy position
+            //อัปเดตตำแหน่งอุกกาบาต
             enemy.style.left = 'calc(10% + ' + Math.random() * + 'px)';
 
-            // Get the height of the game board
+            //รับค่าความสูงของกระดานเกม
             var gameBoardHeight = gameBoard.clientHeight;
 
-            // Check if enemy has reached or exceeded the bottom of game board
+            //ตรวจสอบว่าอุกกาบาตไปถึงจุดต่ำสุดของกระดานเกมหรือยัง
             if (currentPosition >= gameBoardHeight - enemy.clientHeight) {
-                // Remove the enemy from the game board
+                //ลบอุกาบาตออกจากกระดานเกม
                 gameBoard.removeChild(enemy);
             } else {
-                // Continue updating position
+                //อัปเดตตำแหน่งต่อไป
                 requestAnimationFrame(function() {
                     updatePosition(currentPosition, enemy);
                 });
             }
     }
 
-    // Function to collect the number from the enemy
+    //ฟังก์ชันเก็บเลขจากอุกกาบาต
     function collectNumber(enemy) {
-        // Get the number from the enemy
+        //รับหมายเลขจากอุกกาบาต
         var number = parseInt(enemy.textContent);
 
-        // Check if there is space in any inventory div
+        // เช็คพื้นที่ในกระเป๋าว่างมั้ย
         for (var i = 0; i < inventoryItems.length; i++) {
             if (inventoryItems[i].textContent === '') {
-                // Place the number in the empty inventory div
+                // ใส่ตัวเลขของอุกาบาตในช่องเก็บของ
                 inventoryItems[i].textContent = number;
-                // Remove the enemy from the game board
+                // ลบอุกาบาตออกจากหน้าจอ
                 gameBoard.removeChild(enemy);
-                // Exit the loop
+                // จบลูป
                 return;
             }
         }
 
         if (inventoryItems[0].textContent !== '' && inventoryItems[1].textContent !== '') {
-            // Shift number from number1 to inventory
+            // เอาค่าข้างหน้าออกจากกระเป๋า
             var shiftedNumber1 = parseInt(inventoryItems[1].textContent);
             returnToInventory(shiftedNumber1);
-            // Move number from number2 to number1
+            // ย้าย ตัวหน้าไปตัวหลัง
             inventoryItems[1].textContent = inventoryItems[0].textContent;
-            // Clear number2
+            // เคลียร์ ตัวหลังในกระเป๋า
             inventoryItems[0].textContent = number;
-            // Remove the enemy from the game board
+            // ลบอุกาบาตออกจากจอ
             gameBoard.removeChild(enemy);
-            // Exit the loop
+            // จบลูป
             return;
         }
     }
 
-    // Function to return number to inventory
+    // ฟังก์ชันเก็บค่าเข้ากระเป๋า
     function returnToInventory(number) {
-        // Check if there is space in any inventory div
+        // เช็คว่ากระเป๋ามีที่ว่างมั้ย
         for (var i = 0; i < inventoryItems.length; i++) {
             if (inventoryItems[i].textContent === '') {
-                // Place the number in the empty inventory div
+                // เอาค่าในอุกาบาตมาใส่กระเป๋า
                 inventoryItems[i].textContent = number;
                 return true;
             }
@@ -124,6 +113,6 @@ document.addEventListener("DOMContentLoaded", function() {
         return false;
     }
 
-    // Spawn a new enemy every second
+    //ระยะเวลาเกิดใหม่ของอุกาบาต
     setInterval(respawnEnemy, 1000);
 });

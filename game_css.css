@@ -1,12 +1,17 @@
 body {
-    background-color: #000;
-    background-image: url('https://wallpapercosmos.com/w/full/8/7/7/194290-3840x2160-desktop-4k-outer-space-wallpaper-photo.jpg');
+    background-color: #fefffe;
+    background-image: url('img/-2-4-removebg-preview.png'); 
+    background: linear-gradient( 45deg, #1F2544 , #474F7A , #81689D , #FFD0EC);
     background-size: 100%;
     color: #fff;
-    font-family: Arial, sans-serif;
+    font-family: "Itim", cursive;
+    font-size: 20px;
+    font-weight: bold ;
     margin: 0;
     padding: 0;
+    
 }
+
 #game-score {
     width: 450px;
     height: 50px;
@@ -58,23 +63,28 @@ body {
 margin-left: 10px; /* Adjust this margin as needed */
 }
 .inv {
-    width: 50px;
-    height: 50px;
-    background-image: url('./img/moon.png');
+    width: 70px;
+    height: 70px;
+    background-image: url('https://cdn.discordapp.com/attachments/1228366298640285696/1229439001421938779/aukkabad.png?ex=662faf4b&is=661d3a4b&hm=a1e42ac8b264e3cf1c119a0907aacc706ba99c880e5c01edffc6dfdd92abc36b&');
+    background-size: 70px 70px;
+    background-repeat: no-repeat;
+    /* border: #9626f7 2px solid;   */
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    text-shadow: 0 0 5px #0000FF;
     font-weight: bold;
     position: relative;
-    margin: 0 5px;
+    text-align: center;
 }
 
 #clear-button {
-position: absolute;
-bottom: 5px;
-padding: 2px 2px;
+    position: absolute;
+    bottom: 5px;
+    padding: 2px 2px;
 }
 
 #calculator {
@@ -87,10 +97,12 @@ padding: 2px 2px;
     align-items: center;
 }
 .calcu {
-    width: 50px;
-    height: 50px;
-    background-image: url('./img/pakkad2.png');
-    background-size: 50px 50px;
+    width: 80px;
+    height: 80px;
+    background-image: url('https://media.discordapp.net/attachments/1228366298640285696/1229455528665546762/Pngtreeeddy_explosion_blast_boom_vector_6442118.png?ex=662fbeb0&is=661d49b0&hm=89955a80e1ce7606bf9c9bbb81454a6d33ca17ff53831f6f742612ae53bbb5ce&=&format=webp&quality=lossless&width=651&height=651');
+    /* border: #f84343 2px solid; */
+    background-size:75px 75px;
+    background-repeat: no-repeat;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -98,47 +110,46 @@ padding: 2px 2px;
     color: black;
     font-weight: bold;
     position: relative;
-    margin: 0 10px;
+    margin:  10px;
+    text-align: center;
 }
 #opera {
     width: 30px;
     height: 30px;
-    border: #fff 2px solid;
+    border: #ffffff 2px solid;
     border-radius: 0%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    color: white;
+    color: rgb(255, 255, 255);
     font-weight: bold;
     position: relative;
-    margin: 0 10px;
 }
 .button {
-    padding: 5px 5px;
+    padding: 8px 11px;
     margin: 0 5px;
-    background-color: #fff;
+    background-color: #FFD0EC;
     color: #000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: bold;
 }
-.submit-button:hover {
-        background-color: #45a049;
+button:hover {
+        background-color: #81689D;
 }
 .operator {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 35px;
     /* background-color: #ff0; */
-    border: #fff 2px solid;
+    border: #ffffff 2px solid;
     position: absolute;
     bottom: 0;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: rgb(255, 255, 255);
     font-weight: bold;
 }
 .operator:hover {
@@ -161,23 +172,32 @@ padding: 2px 2px;
     left: 80%;
 }
 .enemy {
-    width: 40px;
-    height: 40px;
-    background-image: url('./img/nugget.png');
+    width: 70px;
+    height: 70px;  /* ปรับขนาด Div ตรงนี้ */
+    background-image: url('https://cdn.discordapp.com/attachments/1228366298640285696/1229439001421938779/aukkabad.png?ex=662faf4b&is=661d3a4b&hm=a1e42ac8b264e3cf1c119a0907aacc706ba99c880e5c01edffc6dfdd92abc36b&');
     background-position: 50% 50%;
-    background-size: 40px 40px;
+    background-size: 70px 70px; /* ปรับขนาดรูปตรงนี้ */
+    /* border: #67f5b2 10px solid; */
+    border-radius: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
     z-index: -1;
     font-size: 14px;
     color: #fff;
     font-weight: bold;
-    font-size: large;
-    line-height: 40px;
+    font-size: 1.5em;
+    line-height: 65px;
     text-shadow: 0 0 5px #0000FF;
     text-align: center;
     background-repeat: no-repeat;
+    cursor: pointer;
 }
+ .enemy:hover{
+    background-size: 75px 75px;
+    /* border: #d17dff 2px solid; */
+} 
+
+
 
 .modal-overlay {
     position: fixed;
@@ -200,4 +220,12 @@ padding: 2px 2px;
 #score-results{
     color: #000;
     font-weight: bold;
+}
+
+audio {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
 }
