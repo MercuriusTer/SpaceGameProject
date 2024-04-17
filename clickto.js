@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
     picture.addEventListener('click', function() {
       picture.style.display = 'none';
-      gameRule.style.display = 'flex';
-      scoreRule.style.display = 'flex';
+      gameRule.style.display = 'block';
+      scoreRule.style.display = 'block';
       trashSound.play();
       // setTimeout(function() {
       //   picture.src = originalImageSrc;
