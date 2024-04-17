@@ -1,10 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 body {
     background-color: #fefffe;
     background-image: url('img/-2-4-removebg-preview.png'); 
     background: linear-gradient( 45deg, #1F2544 , #474F7A , #81689D , #FFD0EC);
     background-size: 100%;
     color: #fff;
-    font-family: "Itim", cursive;
+    font-family: "Itim", sans-serif;
     font-size: 20px;
     font-weight: bold ;
     margin: 0;

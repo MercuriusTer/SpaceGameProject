@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
 body {
-    font-family: "Itim", cursive;
+    font-family: "Itim", sans-serif;
     /* background-image: url('https://wallpapercosmos.com/w/full/8/7/7/194290-3840x2160-desktop-4k-outer-space-wallpaper-photo.jpg');
     background-size: 100%; */
     /* background-image: url('https://oyster.ignimgs.com/mediawiki/apis.ign.com/league-of-legends/a/a6/Gragas_lol.jpg?width=640'); */
@@ -7,6 +9,7 @@ body {
     background-size: cover;
     width: auto;
     height: 95.95vh;
+    background-repeat: no-repeat;
     /* marin: auto;
     padding: auto; */
 }
@@ -37,20 +40,7 @@ body {
     background-color: #81689D;
     color: #FFD0EC;
 }
-.score-Rule {
-    background-color: #474F7A;
-    background-position: center;
-    border: 5px solid #ffffff;
-    border-radius: 10px;
-    margin: auto;
-    padding-top: 5px;
-    padding-bottom: 20px;
-    /* padding: 20px;
-    margin-top: 50px;
-    margin-left: 255px; */
-    height: 200px;     
-    width: 400px;
-}
+
 
 h1 {
     color: white;
@@ -106,7 +96,15 @@ p {
 .container {
     text-align: center;
 }
-
+.score-Rule {
+    background-color: #474F7A;
+    background-position: center;
+    border: 5px solid #ffffff;
+    border-radius: 10px;
+    margin: auto;
+    padding: 25px;
+    width: fit-content;
+}
 .game-Rule,
 .score-Rule {
     display: none;
