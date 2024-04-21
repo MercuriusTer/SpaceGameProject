@@ -87,12 +87,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (inventoryItems[0].textContent !== '' && inventoryItems[1].textContent !== '') {
             // เอาค่าข้างหน้าออกจากกระเป๋า
-            var shiftedNumber1 = parseInt(inventoryItems[1].textContent);
+            var shiftedNumber1 = parseInt(inventoryItems[0].textContent);
             returnToInventory(shiftedNumber1);
-            // ย้าย ตัวหน้าไปตัวหลัง
-            inventoryItems[1].textContent = inventoryItems[0].textContent;
-            // เคลียร์ ตัวหลังในกระเป๋า
-            inventoryItems[0].textContent = number;
+            // ย้าย ตัวหลังไปไว้ที่ตัวด้านหน้า
+            inventoryItems[0].textContent = inventoryItems[1].textContent;
+            // เคลียร์ ตัวหลังในกระเป๋า แทนที่ด้วยตัวใหม่
+            inventoryItems[1].textContent = number;
             // ลบอุกาบาตออกจากจอ
             gameBoard.removeChild(enemy);
             // จบลูป
